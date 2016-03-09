@@ -1,4 +1,4 @@
-#  Identify relevant galaxy properties
+#  Document requirements
 
 Summary -- Develop document that outlines the requirements for hydrodynamical simulations for different dark
 energy probes. This document needs to describe the required accuracy as well as required statistics. It also
