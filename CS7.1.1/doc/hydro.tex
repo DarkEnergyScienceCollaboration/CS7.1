@@ -1,0 +1,111 @@
+\documentclass[11pt, margin=1in]{article}
+
+\usepackage{fullpage}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+%=================================================
+
+\title{Hydrodynamical Simulations Requirements for LSST-DESC}
+\author{
+  Zarija Luki\'c\\      \texttt{zarija@lbl.gov}
+  \and
+  Katrin Heitmann\\     \texttt{heitmann@anl.gov}
+}
+\date{v.1 (Dec 2016)} 
+
+%=================================================
+
+\begin{document}
+\maketitle
+
+This document summarizes the hydrodynamical simulation requirements for the working groups within the
+LSST-DESC collaboration. The gravity-only (N-body) simulations requirements are covered in a separate document.
+Two points are important to state at the beginning: this is a ``living document'',
+thus if you think something is missing or inaccurate please let us know; also, not all working
+groups expressed the need for hydrodynamical simulations, therefore not all DESC working groups are
+listed below.
+
+
+\section{Weak Lensing}
+
+The WL working group does not have a critical need for hydro simulations at this point,
+although it would be useful to have a few simulations which could be used to test and
+calibrate simpler and faster methods, like N-body + semi-analytic methods.
+There has been interesting work in using hydro simulations to study intrinsic alignments (IA)
+(see e.g.~Kiessling et al., arXiv:1504.05546), and one concern is that IA requires bigger boxes than the current simulations.
+However (and this still needs to be confirmed later), there might the option to use small-scale IA model and to reduce it
+on large scales to an approach like the linear alignment model.
+Further IA simulation work is at this point a lower priority in the WL group with image systematics,
+DM requirements, LSS statistics, and parameter estimation pipelines being priorities.
+
+Another area where hydro simulations are needed is to quantify the effects of baryonic physics
+on the power spectrum.  Similar to the IA case, it would be helpful to have selected hydro simulations,
+scanning different beyond-adiabatic physics to help establish a parameterization of these effects
+and marginalize over them in the analysis.
+
+The numerical requirements for hydro simulations are medium box sizes
+$\mathcal{O} (100 \,  h^{-1} {\rm Mpc})$ with high mass resolution and rich and varying (subgrid) physics.
+
+
+\section{Strong Lensing}
+
+The strong lensing working group does not have a critical need for hydro simulations, but such simulations could be helpful in
+addressing the following questions:
+%
+(1) Can realistic massive galaxy lens Einstein Rings and 2D IFU kinematics be accurately modeled with an NFW+Sersic mass distribution or would the simulations suggest that we should take a different approach? Investigations along these lines have begun in various places around the SL community, and hydro simulations could help to increase their sophistication and coordinate their tests for a blind challenge.
+%
+(2) Can realistic massive galaxy lens Einstein Rings and 2D IFU kinematics be accurately modeled in the presence of confounding realistic local and line of sight mass environments? Ideally we would use light cones $\sim$1 degree in diameter centered on plausible lens systems that have LMC mass resolution and plausible hydro galaxies, out to the source redshift (z$\sim$2). This challenge should be set with $\sim$100 systems.
+%
+(3) Can we predict weak lensing quantities (like convergence and shear) due to realistic cosmological mass distributions (e.g. including stellar mass, and down to LMC mass galaxies) based on LSST galaxy photometry and weak lensing data? This kind of reconstruction could be attempted in test 2, but it can be investigated before then in non-lens fields. The working group is currently developing this kind of analysis in DM-only simulations, using ray-traced WL effects as ground truth, but will need to move to higher resolution, baryon-rich simulations.
+
+In terms of numerical requirements these would be fairly high-resolution simulations (resolving LMC mass resolutions as they are perturbing strong lens observables) of massive galaxies in a properly motivated cosmological context, plus good line-of-sight information.  Seems that simulations would require full/realistic galaxy formation physics.
+
+
+\section{Clusters}
+
+The cluster working group has a critical need for hydro simulations.  A note of caution is that the following is listing
+the needs of cluster cosmology in general, not narrowly focused on DESC only.
+
+The role of hydro simulations is to take on the three aspects:
+(1) determine the biases in the calibration of weak lensing mass measurements for ensembles of clusters
+selected in optical, SZ and X-ray surveys; using X-ray, SZ, and/or optical information on their centers.
+%
+(2) Determine the cluster mass function to better than 5\% precision (statistical+systematic error) for
+all clusters with masses $M > 10^{13} M_{\odot}$ out to $z \sim 3$. The most massive clusters are especially important,
+and the impact of baryons on these results should be quantified within the systematic budget.
+%
+(3) Determine the predicted form and evolution of the scaling relations of X-ray, SZ and optical mass proxies,
+including the covariance of intrinsic scatters among these proxies (lensing included). 
+
+The computational requirements are significant as targeting massive clusters require large volumes
+to sample these rare fluctuations.  Required accuracy on the mass function is 5\% to $z \sim 3$, and 
+the mass resolution requirement is set by the need to predict the galaxy populations (e.g.~redmapper lambda)
+for the least massive cosmologically interesting clusters ($10^{13} M_{\odot}$).
+%
+Shear maps should enable calibration of lensing masses to 1\% level accuracy.
+This will require at least 1000 halos in a given $(M, z)$ bin, and a spatial resolution for the
+lensing maps of at least 50kpc.  The largest halos at $z<1$ are the most important to begin with.
+Hydro re-simulations would be carried out on halos extracted from the parent simulation used to determine the mass function.
+%
+In terms of physics included, the simulations should be tuned (cooling/feedback physics) to give a reasonable
+match to observed X-ray (especially $f_{\rm gas}$) and optical properties.  Ideally, these simulations would
+simultaneously provide both optical and CMB lensing (TT, EB) signals.
+
+
+\section{Large Scale Structure}
+
+This working group has a low need (perhaps even no need) for hydro simulations.
+The approach of this group is to either do constraints over generalized
+biased expansion or over sufficiently broad HOD
+marginalization, in which case hydro is not needed at all.
+However, hydro could potentially contribute to asses whether there are other large scale fields
+that matter, like photoionization, and the goal is to determine how to marginalize them.
+
+
+\end{document}
